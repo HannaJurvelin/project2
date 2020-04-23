@@ -1,47 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studo Ghibli movies</title>
+    <title>Studio Ghibli movies</title>
 </head>
 
 <script>
-
+    // etsitään elokuvia
     function findMovies() {
 
-    var url = "https://ghibliapi.herokuapp.com/films";
+        //linkki määrittyy käyttäjän valitseman elokuvan id:n perusteella
+        var url = "https://ghibliapi.herokuapp.com/films/" + document.getElementById("movieSelect").value;
+        //kutsutaan dataa
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        //jos data on ok ja kutsu toimii niin tehdään kaksi asiaa
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+                //luodaan uusi objekti joka jäsentää haun tulokset
+                jsonObj = JSON.parse(xmlhttp.responseText);
+
+                //kutsutaan funktiota
+                addMovieData(jsonObj);
+            }
+        }
+    }
+
+    //sivun avautuessa luodaan tyhjä objekti
+    var movieInfo;
+
+    //kutsutaan kaikkien elokuvien tietoja
+    var url = "https://ghibliapi.herokuapp.com/films/";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 
-    xmlhttp.onreadystatechange = function() {
+    //jos kutsu toimii, luodaan uusi objekti joka jäsentää haun tulokset
+    //laitetaan tulokset objektiin movieInfo
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             jsonObj = JSON.parse(xmlhttp.responseText);
+            movieInfo = jsonObj;
+        }
+    }
 
-            console.log(jsonObj);
+    //funktio tulostaa halutun datan id:n perusteella sivuston div:iin
+    function addMovieData(jsonObj) {
+        document.getElementById("moviedata").innerHTML +=
+            "<h2>" + jsonObj.title + "</h2>"
+            + jsonObj.description
+            + "<p><strong>Director</strong></p>"
+            + jsonObj.director
+            + "<p><strong>Release date</strong></p>"
+            + jsonObj.release_date
+            + "<p><strong>Rating</strong></p>"
+            + jsonObj.rt_score
+            + "<br>";
+    }
 
-            for (i = 0; i < jsonObj.length; i++) {
-                document.getElementById("moviedata").innerHTML += 
-                jsonObj[i].title
-                + jsonObj[i].description
-                + jsonObj[i].director
-                + jsonObj[i].release_date
-                + jsonObj[i].rt_score
-                + "<br>";
+    //funktio etsii elokuvia hakusanojen perusteella
+    function searchMovie() {
+        //luodaan uusi objekti, joka ottaa id:n perusteella arvon kentästä ja asettaa kirjaimet pieniksi kirjaimiksi
+        var searchParam = document.getElementById("moviesearch").value.toLowerCase();
+
+        //loopin avulla etsitään hakusanaan sopivat elokuvat
+        for(i = 0; i < movieInfo.length; i++) {
+            //käytetään includes-metodia hakusanaan sopivien elokuvien löytämiseen
+            if (movieInfo[i].title.toLowerCase().includes(searchParam)) {
+
+                //sopivat elokuvat listataan käyttäen aiemmin luotua funktiota
+                addMovieData(movieInfo[i]);
             }
         }
     }
-}
 
 
 </script>
 
 <body>
+    <select name="movieSelect" id="movieSelect" onchange="">
+        <option value="2baf70d1-42bb-4437-b551-e5fed5a87abe">Castle in the Sky</option>
+        <option value="12cfb892-aac0-4c5b-94af-521852e46d6a">Grave of Fireflies</option>
+        <option value="58611129-2dbc-4a81-a72f-77ddfc1b1b49">My Neighbor Totoro</option>
+        <option value="ea660b10-85c4-4ae3-8a5f-41cea3648e3e">Kiki's Delivery Service</option>
+    </select>
 
-    <button id="moviebtn" onclick="findMovies()">Press me</button>
     <br>
-    <div id="moviedata"></div>
-    
+    <button id="moviebtn" onclick="findMovies()">Press me</button>
+
+    <p>Search for a movie:</p>
+    <input id="moviesearch"></input>
+    <button id="search" class="btn" onclick="searchMovie()">Search</button>
+    <br>
+
+    <br>
+    <div id="moviedata" class="btn"></div>
+
 </body>
+
 </html>
