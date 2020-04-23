@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studo Ghibli movies</title>
+</head>
+
+<script>
+
+    function findMovies() {
+
+    var url = "https://ghibliapi.herokuapp.com/films";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            jsonObj = JSON.parse(xmlhttp.responseText);
+
+            console.log(jsonObj);
+
+            for (i = 0; i < jsonObj.length; i++) {
+                document.getElementById("moviedata").innerHTML += 
+                jsonObj[i].title
+                + jsonObj[i].description
+                + jsonObj[i].director
+                + jsonObj[i].release_date
+                + jsonObj[i].rt_score
+                + "<br>";
+            }
+        }
+    }
+}
+
+
+</script>
+
+<body>
+
+    <button id="moviebtn" onclick="findMovies()">Press me</button>
+    <br>
+    <div id="moviedata"></div>
+    
+</body>
+</html>
