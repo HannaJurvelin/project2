@@ -1,0 +1,35 @@
+body {
+    background-color: #FCF7F8;
+    color: #1B1D28;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.btn {
+    background-color: #275DAD;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #142F79;
+}
+
+#moviedata {
+    width: 80%;
+    background-color: #CED3DC;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+h1 {
+    color: #7B7A93;
+}

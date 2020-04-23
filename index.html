@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Studio Ghibli movies</title>
 </head>
 
@@ -25,6 +26,8 @@
                 //luodaan uusi objekti joka jäsentää haun tulokset
                 jsonObj = JSON.parse(xmlhttp.responseText);
 
+                console.log(jsonObj);
+
                 //kutsutaan funktiota
                 addMovieData(jsonObj);
             }
@@ -41,15 +44,17 @@
     xmlhttp.send();
 
     //jos kutsu toimii, luodaan uusi objekti joka jäsentää haun tulokset
-    //laitetaan tulokset objektiin movieInfo
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             jsonObj = JSON.parse(xmlhttp.responseText);
+
+            //laitetaan tulokset aiemmin luotuun objektiin movieInfo
             movieInfo = jsonObj;
         }
     }
 
     //funktio tulostaa halutun datan id:n perusteella sivuston div:iin
+    //funktion parametrina on aiemmin luoto objeti jsonObj joka sisältää jäsennetyn tiedon
     function addMovieData(jsonObj) {
         document.getElementById("moviedata").innerHTML +=
             "<h2>" + jsonObj.title + "</h2>"
@@ -83,6 +88,9 @@
 </script>
 
 <body>
+
+    <h1>Find Ghibli Movies</h1>
+
     <select name="movieSelect" id="movieSelect" onchange="">
         <option value="2baf70d1-42bb-4437-b551-e5fed5a87abe">Castle in the Sky</option>
         <option value="12cfb892-aac0-4c5b-94af-521852e46d6a">Grave of Fireflies</option>
@@ -91,7 +99,7 @@
     </select>
 
     <br>
-    <button id="moviebtn" onclick="findMovies()">Press me</button>
+    <button id="moviebtn" class="btn" onclick="findMovies()">Press me</button>
 
     <p>Search for a movie:</p>
     <input id="moviesearch"></input>
@@ -99,7 +107,7 @@
     <br>
 
     <br>
-    <div id="moviedata" class="btn"></div>
+    <div id="moviedata"></div>
 
 </body>
 
