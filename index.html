@@ -11,28 +11,20 @@
 <script>
     // etsitään elokuvia
     function findMovies() {
+        //tyhjennetään ei soveltuvat haut
+        document.getElementById("moviedata").innerHTML = "";
 
-        //linkki määrittyy käyttäjän valitseman elokuvan id:n perusteella
-        var url = "https://ghibliapi.herokuapp.com/films/" + document.getElementById("movieSelect").value;
-        //kutsutaan dataa
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+        //etsitään sopivat elokuvat loopin avulla
+        for (i = 0; i < movieInfo.length; i++) {
+            //haetaan elokuvat id:n avulla käyttäen elokuville annettua arvoa(value)
+            if (movieInfo[i].id == document.getElementById("movieSelect").value) {
 
-        //jos data on ok ja kutsu toimii niin tehdään kaksi asiaa
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
-                //luodaan uusi objekti joka jäsentää haun tulokset
-                jsonObj = JSON.parse(xmlhttp.responseText);
-
-                console.log(jsonObj);
-
-                //kutsutaan funktiota
-                addMovieData(jsonObj);
+                //hakuun sopivat elokuvat listataan käyttäen aiemmin luotua funktiota
+                addMovieData(movieInfo[i]);
             }
         }
-    }
+
+            }
 
     //sivun avautuessa luodaan tyhjä objekti
     var movieInfo;
@@ -50,12 +42,23 @@
 
             //laitetaan tulokset aiemmin luotuun objektiin movieInfo
             movieInfo = jsonObj;
+
+            //lisätään loopin avulla elokuvat valintalistaukseen
+            for (i = 0; i < movieInfo.length; i++) {
+                document.getElementById("movieSelect").innerHTML += 
+                "<option value=" 
+                + jsonObj[i].id
+                + ">"
+                + jsonObj[i].title
+                + "</option>";
+            }
         }
     }
 
     //funktio tulostaa halutun datan id:n perusteella sivuston div:iin
     //funktion parametrina on aiemmin luoto objeti jsonObj joka sisältää jäsennetyn tiedon
     function addMovieData(jsonObj) {
+        document.getElementById("moviedata").style.display = "block";
         document.getElementById("moviedata").innerHTML +=
             "<h2>" + jsonObj.title + "</h2>"
             + jsonObj.description
@@ -70,11 +73,13 @@
 
     //funktio etsii elokuvia hakusanojen perusteella
     function searchMovie() {
+        document.getElementById('moviedata').innerHTML = "";
+
         //luodaan uusi objekti, joka ottaa id:n perusteella arvon kentästä ja asettaa kirjaimet pieniksi kirjaimiksi
         var searchParam = document.getElementById("moviesearch").value.toLowerCase();
 
         //loopin avulla etsitään hakusanaan sopivat elokuvat
-        for(i = 0; i < movieInfo.length; i++) {
+        for (i = 0; i < movieInfo.length; i++) {
             //käytetään includes-metodia hakusanaan sopivien elokuvien löytämiseen
             if (movieInfo[i].title.toLowerCase().includes(searchParam)) {
 
@@ -84,26 +89,20 @@
         }
     }
 
-
 </script>
 
 <body>
 
     <h1>Find Ghibli Movies</h1>
 
-    <select name="movieSelect" id="movieSelect" onchange="">
-        <option value="2baf70d1-42bb-4437-b551-e5fed5a87abe">Castle in the Sky</option>
-        <option value="12cfb892-aac0-4c5b-94af-521852e46d6a">Grave of Fireflies</option>
-        <option value="58611129-2dbc-4a81-a72f-77ddfc1b1b49">My Neighbor Totoro</option>
-        <option value="ea660b10-85c4-4ae3-8a5f-41cea3648e3e">Kiki's Delivery Service</option>
-    </select>
+    <select name="movieSelect" id="movieSelect" onchange="" class="select-css"></select>
 
     <br>
     <button id="moviebtn" class="btn" onclick="findMovies()">Press me</button>
 
     <p>Search for a movie:</p>
-    <input id="moviesearch"></input>
-    <button id="search" class="btn" onclick="searchMovie()">Search</button>
+    <input id="moviesearch" onkeyup="searchMovie()"></input>
+    <button id="search" class="btn" onclick="searchMovie()" >Search</button>
     <br>
 
     <br>
