@@ -66,8 +66,9 @@
             + jsonObj.director
             + "<p><strong>Release date</strong></p>"
             + jsonObj.release_date
-            + "<p><strong>Rating</strong></p>"
+            + "<p><strong>Rotten tomato score</strong></p>"
             + jsonObj.rt_score
+            + "%"
             + "<br>";
     }
 
@@ -93,17 +94,24 @@
 
 <body>
 
-    <h1>Find Ghibli Movies</h1>
+    <div class="hero-image">
+        <div class="hero-text">
+        <h1>Find Ghibli Movies</h1>
+        </div>
+      </div>
 
-    <select name="movieSelect" id="movieSelect" onchange="" class="select-css"></select>
-
+    <p class="header">Find a movie from the list:</p>
+    <div class="flexbox">
+    <select name="movieSelect" id="movieSelect" class="select-css"></select>
+    <button id="moviebtn" class="btn" onclick="findMovies()">Find info</button>
+    </div>
     <br>
-    <button id="moviebtn" class="btn" onclick="findMovies()">Press me</button>
 
-    <p>Search for a movie:</p>
+    <p class="header">Or search for a movie:</p>
+    <div class="flexbox">
     <input id="moviesearch" onkeyup="searchMovie()"></input>
-    <button id="search" class="btn" onclick="searchMovie()" >Search</button>
-    <br>
+    <button id="search" class="btn" onclick="searchMovie()">Search</button>
+    </div>
 
     <br>
     <div id="moviedata"></div>
