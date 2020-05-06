@@ -1,116 +1,132 @@
 body {
-    background-color: #FCF7F8;
-    color: #1B1D28;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    margin: 0;
+  background-color: #fcf7f8;
+  color: #1b1d28;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
 }
 
 .btn {
-    background-color: #275DAD;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin-left: 10px;
-    cursor: pointer;
-    width: 100px;
+  background-color: #275dad;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  width: 100px;
 }
 
 .btn:hover {
-    background-color: #142F79;
+  background-color: #142f79;
 }
 
-#moviedata {
-    width: 70%;
-    background-color: #ebeef2;
-    color: #515357;
-    padding: 15px 20px 30px 25px;
-    border-radius: 20px;
-    display: none;
-    margin: 20px;
+.moviestyle {
+  width: 50%;
+  background-color: #ebeef2;
+  color: #515357;
+  padding: 15px 20px 30px 25px;
+  border-radius: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  color: #031845;
 }
 
 h1 {
-    color: white;
-    font-size: 32pt;
+  color: white;
+  font-size: 32pt;
+}
 
+h2 {
+  color: #275dad;
+}
+
+strong {
+  color: #275dad;
 }
 
 input {
-    width: 200px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid #CED3DC;
-    border-radius: 4px;
-    transition: width 0.4s ease-in-out;
-  }
+  width: 200px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ced3dc;
+  border-radius: 4px;
+  transition: width 0.4s ease-in-out;
+}
 
-  input:focus {
-    border: 3px solid #7B7A93;
-    width: 300px;
-  }
+input:focus {
+  border: 3px solid #7b7a93;
+  width: 300px;
+}
 
-  .select-css {
-	display: block;
-    font-weight: 700;
-    font-size: 16px;
-	color: #444;
-	line-height: 1.3;
-	padding: 12px;
-	width: 220px;
-	box-sizing: border-box;
-	margin: 0;
-	border: 1px solid #aaa;
-	border-radius: 8px;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	background-color: #fff;
-	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-	  linear-gradient(to bottom, white, #d7dade);;
-	background-repeat: no-repeat, repeat;
-	background-position: right .7em top 50%, 0 0;
-	background-size: .65em auto, 100%;
+.select-css {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.3;
+  padding: 12px;
+  width: 220px;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    linear-gradient(to bottom, white, #d7dade);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
 }
 
 .flexbox {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 20px;
 }
 
 #moviesearch {
-    padding: 15px;
-    margin: 0;
+  padding: 15px;
+  margin: 0;
 }
 
 .hero-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("totoro1.jpg");
-    height: 250px;
-    margin: 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-  }
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+    url("totoro1.jpg");
+  height: 250px;
+  margin: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
 
-  .hero-text {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-  }
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
 
-  .header {
-      margin: 20px;
-  }
+.header {
+  margin: 20px;
+  margin-top: 40px;
+}
+
+.xtratxt {
+  margin-left: 20px;
+  color: grey;
+  font-size: 14px;
+}

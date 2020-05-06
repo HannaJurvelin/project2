@@ -56,11 +56,12 @@
     }
 
     //funktio tulostaa halutun datan id:n perusteella sivuston div:iin
-    //funktion parametrina on aiemmin luoto objeti jsonObj joka sisältää jäsennetyn tiedon
+    //funktion parametrina on aiemmin luoto objekti jsonObj joka sisältää jäsennetyn tiedon
+    //näytettävien tietojen rakenne rakentuu div:n sisälle
     function addMovieData(jsonObj) {
-        document.getElementById("moviedata").style.display = "block";
         document.getElementById("moviedata").innerHTML +=
-            "<h2>" + jsonObj.title + "</h2>"
+            "<div class='moviestyle'>"
+            + "<h2>" + jsonObj.title + "</h2>"
             + jsonObj.description
             + "<p><strong>Director</strong></p>"
             + jsonObj.director
@@ -69,7 +70,8 @@
             + "<p><strong>Rotten tomato score</strong></p>"
             + jsonObj.rt_score
             + "%"
-            + "<br>";
+            + "<br>"
+            + "</div>";
     }
 
     //funktio etsii elokuvia hakusanojen perusteella
@@ -105,13 +107,13 @@
     <select name="movieSelect" id="movieSelect" class="select-css"></select>
     <button id="moviebtn" class="btn" onclick="findMovies()">Find info</button>
     </div>
-    <br>
 
     <p class="header">Or search for a movie:</p>
     <div class="flexbox">
     <input id="moviesearch" onkeyup="searchMovie()"></input>
     <button id="search" class="btn" onclick="searchMovie()">Search</button>
     </div>
+    <p class="xtratxt">f.e Princess Mononoke or search with a letter</p>
 
     <br>
     <div id="moviedata"></div>
